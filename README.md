@@ -20,3 +20,4 @@ There are four major components to this repository.
 - Tests: `npm test`.
 
 Alternatively, you can spin up both the sample applications and the server at the same time using `npm run both`.
+...
