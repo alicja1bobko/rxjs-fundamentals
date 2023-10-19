@@ -1,16 +1,14 @@
 import { fromEvent, interval, merge, NEVER } from 'rxjs';
 import { setCount, startButton, pauseButton } from './utilities';
+import { scan, skipUntil, takeUntil } from 'rxjs/dist/types/operators';
 
 const start$ = fromEvent(startButton, 'click');
 const pause$ = fromEvent(pauseButton, 'click');
 
-let interval$ = interval(1000);
-let subscription;
+const counter$ = interval(1000).pipe(
+  skipUntil(start$),
+  scan((total) => total + 1, 0),
+  takeUntil(pause$),
+);
 
-start$.subscribe(() => {
-  subscription = interval$.subscribe(setCount);
-});
-
-pause$.subscribe(() => {
-  subscription.unsubscribe();
-});
+counter$.subscribe(setCount);
