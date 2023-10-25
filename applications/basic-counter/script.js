@@ -1,6 +1,6 @@
 import { fromEvent, interval, merge, NEVER } from 'rxjs';
 import { setCount, startButton, pauseButton } from './utilities';
-import { scan, skipUntil, takeUntil } from 'rxjs/dist/types/operators';
+import { scan, skipUntil, takeUntil } from 'rxjs/operators';
 
 const start$ = fromEvent(startButton, 'click');
 const pause$ = fromEvent(pauseButton, 'click');
